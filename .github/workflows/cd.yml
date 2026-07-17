@@ -1,4 +1,31 @@
-name: cd.yml
+name: CD - Generar Artefacto
+
 on:
+push:
+branches: [ "main" ]
 
 jobs:
+build-and-publish:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout del codigo
+    uses: actions/checkout@v3
+
+  - name: Set up JDK 17
+    uses: actions/setup-java@v3
+    with:
+      java-version: '17'
+      distribution: 'temurin'
+
+  - name: Dar permisos de ejecucion a Gradle
+    run: chmod +x gradlew
+
+  - name: Compilar proyecto (Build)
+    run: ./gradlew build -x test
+
+  - name: Subir Artefacto (JAR)
+    uses: actions/upload-artifact@v3
+    with:
+      name: laboratorio6-jorge-yugsi
+      path: build/libs/*.jar
