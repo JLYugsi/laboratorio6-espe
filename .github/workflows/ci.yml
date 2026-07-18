@@ -8,18 +8,18 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-steps:
-    - name: Checkout del codigo
-      uses: actions/checkout@v3
+    steps:
+        - name: Checkout del código
+          uses: actions/checkout@v3
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+        - name: Set up JDK 17
+          uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+            distribution: 'temurin'
 
-    - name: Dar permisos de ejecucion a Gradle
-      run: chmod +x gradlew
+        - name: Dar permisos de ejecución a Gradle
+          run: chmod +x gradlew
 
-    - name: Ejecutar pruebas unitarias
-      run: ./gradlew test
+        - name: Ejecutar pruebas unitarias
+          run: ./gradlew test
